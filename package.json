@@ -1,11 +1,11 @@
 {
-  "name": "@composita/lexer",
+  "name": "@composita/il",
   "version": "0.1.0-dev.0",
-  "description": "Composita language system.",
-  "main": "dist/cjs/lexer.js",
-  "module": "dist/esm/lexer.js",
-  "types": "dist/types/lexer.d.ts",
-  "type": "module",
+  "description": "Composita language IL.",
+  "main": "dist/cjs/il.js",
+  "module": "dist/esm/il.js",
+  "types": "dist/types/il.d.ts",
+  "type": "commonjs",
   "files": [
     "dist",
     "src"
@@ -18,18 +18,17 @@
     "build": "yarn clean && yarn ts:all",
     "clean": "rimraf dist",
     "cleantest": "rimraf 'test/**/*.js' 'test/**/*.map' 'test/**/*.d.ts' 'src/**/*.js' 'src/**/*.map' 'src/**/*.d.ts'",
-    "lint": "eslint 'src/**/*.ts' 'test/**/*.ts'",
-    "prepublishOnly": "yarn test && yarn build",
-    "postpublish": "yarn clean",
-    "test": "tape -r ts-node/register 'test/**/*.ts' && yarn lint"
+    "lint": "eslint 'src/**/*.ts'",
+    "prepublishOnly": "yarn lint && yarn build",
+    "postpublish": "yarn clean"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Composita/lexer.git"
+    "url": "git+https://github.com/Composita/il.git"
   },
   "keywords": [
     "composita",
-    "lexer"
+    "il"
   ],
   "author": {
     "name": "Hansruedi Patzen",
@@ -38,7 +37,7 @@
   },
   "license": "0BSD",
   "bugs": {
-    "url": "https://github.com/Composita/lexer/issues"
+    "url": "https://github.com/Composita/il/issues"
   },
   "homepage": "https://www.composita.dev/",
   "devDependencies": {
@@ -56,6 +55,10 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
+    "@composita/ts-utility-types": "^0.1.0-dev.5",
     "vscode-languageserver-types": "^3.15.1"
+  },
+  "peerDependencies": {
+    "@composita/ts-utility-types": "^0.1.0-dev.5"
   }
 }
