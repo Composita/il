@@ -1,6 +1,6 @@
 {
   "name": "@composita/il",
-  "version": "0.1.0-dev.0",
+  "version": "0.1.0-dev.1",
   "description": "Composita language IL.",
   "main": "dist/cjs/il.js",
   "module": "dist/esm/il.js",
@@ -55,8 +55,7 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
-    "@composita/ts-utility-types": "^0.1.0-dev.5",
-    "vscode-languageserver-types": "^3.15.1"
+    "@composita/ts-utility-types": "^0.1.0-dev.5"
   },
   "peerDependencies": {
     "@composita/ts-utility-types": "^0.1.0-dev.5"
