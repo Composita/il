@@ -4,7 +4,7 @@
 		{
 			"type": "shell",
 			"label": "yarn: build",
-			"dependsOn": [ "yarn: test" ],
+			"dependsOn": [ "yarn: lint" ],
 			"command": "yarn",
 			"args": [
 				"build"
@@ -16,12 +16,22 @@
 		},
 		{
 			"type": "shell",
-			"label": "yarn: test",
+			"label": "yarn: lint",
+			"dependsOn": [ "yarn: install" ],
 			"command": "yarn",
 			"args": [
-				"test"
+				"lint"
 			],
-			"group": "test"
+			"group": "build"
+		},
+		{
+			"type": "shell",
+			"label": "yarn: install",
+			"command": "yarn",
+			"args": [
+				"install"
+			],
+			"group": "build"
 		}
 	]
 }
