@@ -40,7 +40,12 @@ export enum OpCode {
     IsType,
 }
 
-export type InstructionOperand = number | boolean | string | Descriptor;
+export enum SystemCall {
+    Write,
+    WriteLine,
+}
+
+export type InstructionOperand = number | boolean | string | SystemCall | Descriptor;
 
 export class Instruction {
     constructor(private readonly opCode: OpCode, private readonly operands: Array<InstructionOperand>) {}
