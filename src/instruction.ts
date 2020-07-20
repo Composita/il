@@ -48,7 +48,11 @@ export enum SystemCall {
 export type InstructionOperand = number | boolean | string | SystemCall | Descriptor;
 
 export class Instruction {
-    constructor(private readonly opCode: OpCode, private readonly operands: Array<InstructionOperand>) {}
+    constructor(private readonly opCode: OpCode, ...operands: Array<InstructionOperand>) {
+        this.operands = new Array<InstructionOperand>(...operands);
+    }
+
+    private readonly operands: Array<InstructionOperand>;
 
     getOpCode(): OpCode {
         return this.opCode;
