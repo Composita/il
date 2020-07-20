@@ -1,6 +1,8 @@
 import { Instruction, SendInstruction } from './instruction';
 
-export abstract class Descriptor {}
+export abstract class Descriptor {
+    constructor(public readonly name: string) {}
+}
 
 export enum ComponentPart {
     Begin,
@@ -9,9 +11,11 @@ export enum ComponentPart {
 }
 
 export class ComponentDescriptor extends Descriptor {
-    constructor(public readonly name: string) {
-        super();
+    constructor(name: string) {
+        super(name);
     }
+
+    public readonly procedures: Array<ProcedureDescriptor> = new Array<ProcedureDescriptor>();
 
     public readonly offers: Array<ImplementationDescriptor> = new Array<ImplementationDescriptor>();
     public readonly requires: Array<string> = new Array<string>();
@@ -21,9 +25,15 @@ export class ComponentDescriptor extends Descriptor {
     public readonly finallyCode: Array<Instruction> = Array<Instruction>();
 }
 
+export class ProcedureDescriptor extends Descriptor {
+    constructor(name: string) {
+        super(name);
+    }
+}
+
 export class ImplementationDescriptor extends Descriptor {
-    constructor(public readonly name: string) {
-        super();
+    constructor(name: string) {
+        super(name);
     }
 
     public readonly code: Array<Instruction> = new Array<Instruction>();
