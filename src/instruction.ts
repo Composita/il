@@ -1,157 +1,55 @@
-import { Optional } from '@composita/ts-utility-types';
-import { Message } from './message';
-import { ComponentDescriptor } from './descriptor';
+import { Descriptor } from './descriptor';
 
 export enum OpCode {
-    NewComponent,
+    Add,
+    Subtract,
+    Mul,
+    Div,
+    Negate,
+    Mod,
+    Equal,
+    Less,
+    LessEqual,
+    Greater,
+    GreaterEqual,
+    Not,
+    LogicOr,
+    LogicAnd,
+    New,
     Send,
+    Await,
     Receive,
     Connect,
     CheckReceive,
     SysCall,
     ProcedureCall,
+    Return,
     LoadBool,
     LoadText,
     LoadFloat,
     LoadInteger,
+    LoadDescriptor,
     StoreBool,
     StoreText,
     StoreFloat,
     StoreInteger,
+    StoreDescriptor,
     Branch,
     BranchTrue,
     BranchFalse,
+    IsType,
 }
 
-export abstract class Instruction {
-    abstract getOpCode(): OpCode;
-}
+export type InstructionOperand = number | boolean | string | Descriptor;
 
-export class SendInstruction extends Instruction {
-    constructor(private readonly record: Message) {
-        super();
-    }
-
-    private targetMailbox: Optional<number>;
+export class Instruction {
+    constructor(private readonly opCode: OpCode, private readonly operands: Array<InstructionOperand>) {}
 
     getOpCode(): OpCode {
-        return OpCode.Send;
+        return this.opCode;
     }
 
-    setTargetMailbox(target: number): void {
-        this.targetMailbox = target;
-    }
-
-    getTarget(): number {
-        if (this.targetMailbox === undefined) {
-            throw new Error('Unknown target mailbox.');
-        }
-        return this.targetMailbox;
-    }
-
-    getMessage(): Message {
-        return this.record;
-    }
-}
-
-export class ReceiveInstruction extends Instruction {
-    getOpCode(): OpCode {
-        return OpCode.Receive;
-    }
-}
-
-export class NewComponentInstruction extends Instruction {
-    constructor(private readonly descriptor: ComponentDescriptor) {
-        super();
-    }
-
-    getOpCode(): OpCode {
-        return OpCode.NewComponent;
-    }
-
-    getDescriptor(): ComponentDescriptor {
-        return this.descriptor;
-    }
-}
-
-export class ConnectInstruction extends Instruction {
-    constructor(
-        private readonly server: ComponentDescriptor,
-        private readonly client: ComponentDescriptor,
-        private readonly service: string,
-    ) {
-        super();
-    }
-
-    getOpCode(): OpCode {
-        return OpCode.Connect;
-    }
-
-    getServer(): ComponentDescriptor {
-        return this.server;
-    }
-
-    getClient(): ComponentDescriptor {
-        return this.client;
-    }
-
-    getService(): string {
-        return this.service;
-    }
-}
-
-type LoadData = string | number | boolean;
-
-export abstract class LoadInstraction<T extends LoadData> extends Instruction {
-    constructor(private readonly data: T) {
-        super();
-    }
-
-    getData(): LoadData {
-        return this.data;
-    }
-}
-
-export class TextLoadInstruction extends LoadInstraction<string> {
-    getOpCode(): OpCode {
-        return OpCode.LoadText;
-    }
-}
-
-export class BooleanLoadInstruction extends LoadInstraction<boolean> {
-    getOpCode(): OpCode {
-        return OpCode.LoadBool;
-    }
-}
-
-export class IntegerLoadInstruction extends LoadInstraction<number> {
-    getOpCode(): OpCode {
-        return OpCode.LoadInteger;
-    }
-}
-
-export class FloatLoadInstruction extends LoadInstraction<number> {
-    getOpCode(): OpCode {
-        return OpCode.LoadFloat;
-    }
-}
-
-export enum SysCall {
-    Write,
-    Writeline,
-    SystemTime,
-}
-
-export class SysCallInstruction extends Instruction {
-    constructor(private readonly sysCall: SysCall) {
-        super();
-    }
-
-    getSysCall(): SysCall {
-        return this.sysCall;
-    }
-
-    getOpCode(): OpCode {
-        return OpCode.SysCall;
+    getOperands(): Array<InstructionOperand> {
+        return this.operands;
     }
 }
