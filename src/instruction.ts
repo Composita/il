@@ -12,6 +12,7 @@ export enum OpCode {
     LessEqual,
     Greater,
     GreaterEqual,
+    NotEqual,
     Not,
     LogicOr,
     LogicAnd,
