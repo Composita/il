@@ -196,6 +196,13 @@ export class JumpOffset {
     protected readonly _jumpOffsetTag = JumpOffsetTag.Tag;
 }
 
+enum LabelTag {
+    Tag,
+}
+class Label {
+    protected readonly _labelTag = LabelTag.Tag;
+}
+
 export type InstructionOperand =
     | IntegerValue
     | FloatValue
@@ -205,7 +212,8 @@ export type InstructionOperand =
     | SystemCallValue
     | IndexValue
     | JumpOffset
-    | Descriptor;
+    | Descriptor
+    | Label;
 
 export class Instruction {
     constructor(private readonly opCode: OpCode, ...operands: Array<InstructionOperand>) {
