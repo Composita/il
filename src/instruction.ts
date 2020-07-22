@@ -7,7 +7,7 @@ export enum OpCode {
     Multiply,
     Divide,
     Negate,
-    Modulate,
+    Modulo,
 
     // compare
     Equal,
@@ -37,7 +37,7 @@ export enum OpCode {
     Return,
 
     // load constants
-    LoadConstantBool,
+    LoadConstantBoolean,
     LoadConstantText,
     LoadConstantCharacter,
     LoadConstantFloat,
@@ -51,6 +51,9 @@ export enum OpCode {
 
     StoreVariable,
     LoadVariable,
+
+    StoreCollectionVariable,
+    LoadCollectionVariable,
 
     StoreConstantVariable,
     LoadConstantVariable,
@@ -197,6 +200,7 @@ export type InstructionOperand =
     | TextValue
     | SystemCallValue
     | IndexValue
+    | JumpOffset
     | Descriptor;
 
 export class Instruction {
