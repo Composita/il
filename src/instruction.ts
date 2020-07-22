@@ -199,7 +199,7 @@ export class JumpOffset {
 enum LabelTag {
     Tag,
 }
-class Label {
+export class Label {
     protected readonly _labelTag = LabelTag.Tag;
 }
 
