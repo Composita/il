@@ -27,9 +27,15 @@ export class ComponentDescriptor extends Descriptor {
     private readonly offers: Array<InterfaceDescriptor> = new Array<InterfaceDescriptor>();
     private readonly requires: Array<InterfaceDescriptor> = new Array<InterfaceDescriptor>();
 
+    private readonly initCode: LocalCodeBlockDescriptor = new LocalCodeBlockDescriptor();
+
     private readonly beginCode: LocalCodeBlockDescriptor = new LocalCodeBlockDescriptor();
     private readonly activityCode: LocalCodeBlockDescriptor = new LocalCodeBlockDescriptor();
     private readonly finallyCode: LocalCodeBlockDescriptor = new LocalCodeBlockDescriptor();
+
+    getInitCode(): LocalCodeBlockDescriptor {
+        return this.initCode;
+    }
 
     getBeginCode(): LocalCodeBlockDescriptor {
         return this.beginCode;

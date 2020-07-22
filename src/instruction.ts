@@ -1,49 +1,102 @@
 import { Descriptor } from './descriptor';
 
 export enum OpCode {
+    // math binary
     Add,
     Subtract,
-    Mul,
-    Div,
+    Multiply,
+    Divide,
     Negate,
-    Mod,
+    Modulate,
+
+    // compare
     Equal,
     Less,
     LessEqual,
     Greater,
     GreaterEqual,
     NotEqual,
+
+    // unary invert
     Not,
+
+    // logic binary ops
     LogicOr,
     LogicAnd,
+
+    // new component
     New,
-    Send,
-    Await,
-    Receive,
-    Connect,
-    CheckReceive,
-    SysCall,
-    ProcedureCall,
+    Delete,
+
+    Send, // send what, to
+    Receive, // receive what, from
+    Connect, // descA, interface
+    CheckReceive, // syscall
+    SysCall, // syscall
+    ProcedureCall, // normal call
     Return,
-    LoadBool,
-    LoadText,
-    LoadFloat,
-    LoadInteger,
-    LoadDescriptor,
-    StoreBool,
-    StoreText,
-    StoreFloat,
-    StoreInteger,
-    StoreDescriptor,
+
+    // load constants
+    LoadConstantBool,
+    LoadConstantText,
+    LoadConstantCharacter,
+    LoadConstantFloat,
+    LoadConstantInteger,
+
+    StoreArgument,
+    LoadArgument,
+
+    StoreLocalVariable,
+    LoadLocalVariable,
+
+    StoreVariable,
+    LoadVariable,
+
+    StoreConstantVariable,
+    LoadConstantVariable,
+
+    // concurrency
+    Await,
+    AcquireShared,
+    ReleaseShared,
+    AcquireExclusive,
+    ReleaseExclusive,
+
     Branch,
     BranchTrue,
     BranchFalse,
+
     IsType,
 }
 
 export enum SystemCall {
     Write,
     WriteLine,
+    WriteHex,
+    Assert1,
+    Assert2,
+    Halt,
+    Inc1,
+    Inc2,
+    Dec1,
+    Dec2,
+    Passivate,
+    Count,
+    Length,
+    Sqrt,
+    Sin,
+    Cos,
+    Tan,
+    ArcSin,
+    ArcCos,
+    ArcTan,
+    Random,
+    Min,
+    Max,
+    ToCharacter,
+    ToInteger,
+    ToReal,
+    ToText,
 }
 
 enum TextValueTag {
@@ -100,6 +153,42 @@ export class SystemCallValue {
     protected readonly _systemCallValueTag = SystemCallValueTag.Tag;
 }
 
+enum FieldIndexTag {
+    Tag,
+}
+export class FieldIndex {
+    constructor(public readonly index: number) {}
+
+    protected readonly _fieldIndexTag = FieldIndexTag.Tag;
+}
+
+enum LocalVariableIndexTag {
+    Tag,
+}
+export class LocalVariableIndex {
+    constructor(public readonly index: number) {}
+
+    protected readonly _localVariableIndexTag = LocalVariableIndexTag.Tag;
+}
+
+enum IndexValueTag {
+    Tag,
+}
+export class IndexValue {
+    constructor(public readonly index: number) {}
+
+    protected readonly _indexValueTag = IndexValueTag.Tag;
+}
+
+enum JumpOffsetTag {
+    Tag,
+}
+export class JumpOffset {
+    constructor(public readonly offset: number) {}
+
+    protected readonly _jumpOffsetTag = JumpOffsetTag.Tag;
+}
+
 export type InstructionOperand =
     | IntegerValue
     | FloatValue
@@ -107,6 +196,7 @@ export type InstructionOperand =
     | CharacterValue
     | TextValue
     | SystemCallValue
+    | IndexValue
     | Descriptor;
 
 export class Instruction {
