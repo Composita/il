@@ -31,6 +31,7 @@ export enum OpCode {
     Send, // send what, to
     Receive, // receive what, from
     Connect, // descA, interface
+    Disconnect,
     CheckReceive, // syscall
     SysCall, // syscall
     ProcedureCall, // normal call
