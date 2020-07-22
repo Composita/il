@@ -44,6 +44,9 @@ export enum OpCode {
     LoadConstantFloat,
     LoadConstantInteger,
 
+    LoadDescriptor,
+    LoadThis,
+
     StoreArgument,
     LoadArgument,
 
