@@ -47,6 +47,8 @@ export enum OpCode {
     LoadDescriptor,
     LoadThis,
 
+    Move,
+
     StoreArgument,
     LoadArgument,
 
