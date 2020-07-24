@@ -23,10 +23,10 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@composita/ts-utility-types@^0.1.0-dev.7":
-  version "0.1.0-dev.7"
-  resolved "https://registry.yarnpkg.com/@composita/ts-utility-types/-/ts-utility-types-0.1.0-dev.7.tgz#f20a35c9765bf7cd2e9046bd4a9c9cf7b9786df4"
-  integrity sha512-BckZEnnSV1p3ZeuMzfM5MR5R+xj4aIzEJS3WOVsKLjXQLmmMaUDSYZceJX7+RGO8RX2sobPloWuoiy6LfkIOFg==
+"@composita/ts-utility-types@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@composita/ts-utility-types/-/ts-utility-types-0.2.0.tgz#3d9e900e8b229c7921636ca424b11c4b03523241"
+  integrity sha512-HMwqhqRXJhIcidLkW7TK8zqjClW2nWdYncBer9Xn1JxMIpqMGr8Sq1LT47RIbS8n3O8zbwwhEeFTuu3R56jh1A==
 
 "@types/color-name@^1.1.1":
   version "1.1.1"
@@ -43,10 +43,10 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.5.tgz#dcce4430e64b443ba8945f0290fb564ad5bac6dd"
   integrity sha512-7+2BITlgjgDhH0vvwZU/HZJVyk+2XUlvxXe8dFMedNX/aMkaOq++rMAFXc0tM7ij15QaWlbdQASBR9dihi+bDQ==
 
-"@types/node@*", "@types/node@^14.0.24":
-  version "14.0.24"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.24.tgz#b0f86f58564fa02a28b68f8b55d4cdec42e3b9d6"
-  integrity sha512-btt/oNOiDWcSuI721MdL8VQGnjsKjlTMdrKyTcLCKeQp/n4AAMFJ961wMbp+09y8WuGPClDEv07RIItdXKIXAA==
+"@types/node@*", "@types/node@^14.0.25":
+  version "14.0.25"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.25.tgz#7ad8b00a1206d6c9e94810e49f3115f0bcc30456"
+  integrity sha512-okMqUHqrMlGOxfDZliX1yFX5MV6qcd5PpRz96XYtjkM0Ws/hwg23FMUqt6pETrVRZS+EKUB5HY19mmo54EuQbA==
 
 "@types/tape@^4.13.0":
   version "4.13.0"
