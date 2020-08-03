@@ -1,4 +1,4 @@
-import { Descriptor } from './descriptor';
+import { Descriptor, ComponentDescriptor } from './descriptor';
 
 export enum OpCode {
     // math binary
@@ -216,6 +216,15 @@ export type InstructionOperand =
     | JumpOffset
     | Descriptor
     | Label;
+
+export type VariableValue =
+    | IntegerValue
+    | FloatValue
+    | BooleanValue
+    | CharacterValue
+    | TextValue
+    | ComponentDescriptor
+    | undefined;
 
 export class Instruction {
     constructor(private readonly opCode: OpCode, ...operands: Array<InstructionOperand>) {

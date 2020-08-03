@@ -1,4 +1,4 @@
-import { Instruction, InstructionOperand } from './instruction';
+import { Instruction, VariableValue } from './instruction';
 
 export abstract class Descriptor {
     constructor(public readonly name: string) {}
@@ -156,21 +156,46 @@ export class ImplementationDescriptor extends CodeBlockDescriptor {
 }
 
 export class VariableIndexDescriptor extends Descriptor {
-    constructor(private readonly index: Array<InstructionOperand>) {
+    constructor(private readonly index: Array<VariableValue>) {
         super('@@__VARIABLE_INDEX__@@');
     }
 
-    getIndex(): Array<InstructionOperand> {
+    getIndex(): Array<VariableValue> {
         return this.index;
     }
 }
 
-export class VariableDescriptor extends Descriptor {
-    constructor(name: string, private readonly index: VariableIndexDescriptor) {
-        super(name);
+enum VariableDescriptorBaseTag {
+    Tag,
+}
+export abstract class VariableDescriptorBase extends Descriptor {
+    protected readonly _variableDescriptorBaseTag: VariableDescriptorBaseTag = VariableDescriptorBaseTag.Tag;
+}
+
+export class VariableDescriptor extends VariableDescriptorBase {
+    private value: VariableValue = undefined;
+
+    getValue(): VariableValue {
+        return this.value;
     }
 
-    getIndex(): VariableIndexDescriptor {
-        return this.index;
+    updateValue(value: VariableValue): void {
+        this.value = value;
+    }
+}
+
+export class CollectionVariableDescriptor extends VariableDescriptorBase {
+    private values: Map<VariableIndexDescriptor, VariableValue> = new Map<VariableIndexDescriptor, VariableValue>();
+
+    getValue(index: VariableIndexDescriptor): VariableValue {
+        const value = this.values.get(index);
+        if (value === undefined) {
+            throw new Error(`Failed to lookup collection variable.`);
+        }
+        return value;
+    }
+
+    updateValue(index: VariableIndexDescriptor, value: VariableValue): void {
+        this.values.set(index, value);
     }
 }
