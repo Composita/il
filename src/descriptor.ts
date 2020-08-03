@@ -22,7 +22,7 @@ export class ComponentDescriptor extends Descriptor {
 
     private readonly procedures: Array<ProcedureDescriptor> = new Array<ProcedureDescriptor>();
     private readonly implementations: Array<ImplementationDescriptor> = new Array<ImplementationDescriptor>();
-    private readonly fields: Array<VariableDescriptor> = new Array<VariableDescriptor>();
+    private readonly fields: Array<VariableDescriptorBase> = new Array<VariableDescriptorBase>();
 
     private readonly offers: Array<InterfaceDescriptor> = new Array<InterfaceDescriptor>();
     private readonly requires: Array<InterfaceDescriptor> = new Array<InterfaceDescriptor>();
@@ -65,11 +65,11 @@ export class ComponentDescriptor extends Descriptor {
         return Descriptor.load(this.implementations, index);
     }
 
-    pushField(descriptor: VariableDescriptor): number {
+    pushField(descriptor: VariableDescriptorBase): number {
         return Descriptor.push(this.fields, descriptor);
     }
 
-    loadField(index: number): VariableDescriptor {
+    loadField(index: number): VariableDescriptorBase {
         return Descriptor.load(this.fields, index);
     }
 
