@@ -8,8 +8,8 @@ export abstract class Descriptor {
     }
 
     static load<T extends Descriptor>(target: Array<T>, index: number): T {
-        if (target.length >= index || index < 0) {
-            throw new Error(`Invalid procedure index.`);
+        if (index >= target.length || index < 0) {
+            throw new Error(`Invalid load index ${index}, target size ${target.length}.`);
         }
         return target[index];
     }
@@ -97,6 +97,31 @@ export class ProtocolDescriptor extends Descriptor {
 
     getParent(): InterfaceDescriptor {
         return this.parent;
+    }
+}
+
+export enum MessageDirection {
+    IN,
+    OUT,
+}
+
+export class MessageDescriptor extends Descriptor {
+    constructor(name: string, private direction: MessageDirection) {
+        super(name);
+    }
+
+    private readonly params: Array<VariableDescriptor> = new Array<VariableDescriptor>();
+
+    getDirection(): MessageDirection {
+        return this.direction;
+    }
+
+    loadParam(index: number): VariableDescriptor {
+        return Descriptor.load(this.params, index);
+    }
+
+    pushParam(variable: VariableDescriptor): number {
+        return Descriptor.push(this.params, variable);
     }
 }
 
