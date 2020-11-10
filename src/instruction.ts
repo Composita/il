@@ -1,3 +1,4 @@
+import { Clonable } from './clonable';
 import { Descriptor, ComponentDescriptor } from './descriptor';
 
 export enum OpCode {
@@ -111,98 +112,142 @@ export enum SystemCall {
 enum TextValueTag {
     Tag,
 }
-export class TextValue {
+export class TextValue implements Clonable<TextValue> {
     constructor(public readonly value: string) {}
 
     protected readonly _textValueTag = TextValueTag.Tag;
+
+    clone(): TextValue {
+        return new TextValue(this.value);
+    }
 }
 
 enum CharacterValueTag {
     Tag,
 }
-export class CharacterValue {
+export class CharacterValue implements Clonable<CharacterValue> {
     constructor(public readonly value: string) {}
 
     protected readonly _characterValueTag = CharacterValueTag.Tag;
+
+    clone(): CharacterValue {
+        return new CharacterValue(this.value);
+    }
 }
 
 enum FloatValueTag {
     Tag,
 }
-export class FloatValue {
+export class FloatValue implements Clonable<FloatValue> {
     constructor(public readonly value: number) {}
 
     protected readonly _floatValueTag = FloatValueTag.Tag;
+
+    clone(): FloatValue {
+        return new FloatValue(this.value);
+    }
 }
 
 enum IntegerValueTag {
     Tag,
 }
-export class IntegerValue {
+export class IntegerValue implements Clonable<IntegerValue> {
     constructor(public readonly value: number) {}
 
     protected readonly _integerValueTag = IntegerValueTag.Tag;
+
+    clone(): IntegerValue {
+        return new IntegerValue(this.value);
+    }
 }
 
 enum BooleanValueTag {
     Tag,
 }
-export class BooleanValue {
+export class BooleanValue implements Clonable<BooleanValue> {
     constructor(public readonly value: boolean) {}
 
     protected readonly _booleanValueTag = BooleanValueTag.Tag;
+
+    clone(): BooleanValue {
+        return new BooleanValue(this.value);
+    }
 }
 
 enum SystemCallValueTag {
     Tag,
 }
-export class SystemCallValue {
+export class SystemCallValue implements Clonable<SystemCallValue> {
     constructor(public readonly value: SystemCall) {}
 
     protected readonly _systemCallValueTag = SystemCallValueTag.Tag;
+
+    clone(): SystemCallValue {
+        return new SystemCallValue(this.value);
+    }
 }
 
 enum FieldIndexTag {
     Tag,
 }
-export class FieldIndex {
+export class FieldIndex implements Clonable<FieldIndex> {
     constructor(public readonly index: number) {}
 
     protected readonly _fieldIndexTag = FieldIndexTag.Tag;
+
+    clone(): FieldIndex {
+        return new FieldIndex(this.index);
+    }
 }
 
 enum LocalVariableIndexTag {
     Tag,
 }
-export class LocalVariableIndex {
+export class LocalVariableIndex implements Clonable<LocalVariableIndex> {
     constructor(public readonly index: number) {}
 
     protected readonly _localVariableIndexTag = LocalVariableIndexTag.Tag;
+
+    clone(): LocalVariableIndex {
+        return new LocalVariableIndex(this.index);
+    }
 }
 
 enum IndexValueTag {
     Tag,
 }
-export class IndexValue {
+export class IndexValue implements Clonable<IndexValue> {
     constructor(public readonly index: number) {}
 
     protected readonly _indexValueTag = IndexValueTag.Tag;
+
+    clone(): IndexValue {
+        return new IndexValue(this.index);
+    }
 }
 
 enum JumpOffsetTag {
     Tag,
 }
-export class JumpOffset {
+export class JumpOffset implements Clonable<JumpOffset> {
     constructor(public readonly offset: number) {}
 
     protected readonly _jumpOffsetTag = JumpOffsetTag.Tag;
+
+    clone(): JumpOffset {
+        return new JumpOffset(this.offset);
+    }
 }
 
 enum LabelTag {
     Tag,
 }
-export class Label {
+export class Label implements Clonable<Label> {
     protected readonly _labelTag = LabelTag.Tag;
+
+    clone(): Label {
+        return new Label();
+    }
 }
 
 export type InstructionOperand =
@@ -214,7 +259,7 @@ export type InstructionOperand =
     | SystemCallValue
     | IndexValue
     | JumpOffset
-    | Descriptor
+    | Descriptor<never>
     | Label;
 
 export type VariableValue =
@@ -226,7 +271,7 @@ export type VariableValue =
     | ComponentDescriptor
     | undefined;
 
-export class Instruction {
+export class Instruction implements Clonable<Instruction> {
     constructor(private readonly opCode: OpCode, ...operands: Array<InstructionOperand>) {
         this.operands = new Array<InstructionOperand>(...operands);
     }
@@ -239,5 +284,9 @@ export class Instruction {
 
     getOperands(): Array<InstructionOperand> {
         return this.operands;
+    }
+
+    clone(): Instruction {
+        return new Instruction(this.opCode, ...this.operands.map((o) => o.clone()));
     }
 }
