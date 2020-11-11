@@ -1,5 +1,15 @@
 import { Clonable } from './clonable';
-import { Descriptor, ComponentDescriptor } from './descriptor';
+import {
+    ComponentDescriptor,
+    ProtocolDescriptor,
+    MessageDescriptor,
+    InterfaceDescriptor,
+    LocalCodeBlockDescriptor,
+    ProcedureDescriptor,
+    ImplementationDescriptor,
+    VariableDescriptorBase,
+    VariableIndexDescriptor,
+} from './descriptor';
 
 export enum OpCode {
     // math binary
@@ -259,7 +269,15 @@ export type InstructionOperand =
     | SystemCallValue
     | IndexValue
     | JumpOffset
-    | Descriptor<never>
+    | ComponentDescriptor
+    | ProtocolDescriptor
+    | MessageDescriptor
+    | InterfaceDescriptor
+    | LocalCodeBlockDescriptor
+    | ProcedureDescriptor
+    | ImplementationDescriptor
+    | VariableIndexDescriptor
+    | VariableDescriptorBase
     | Label;
 
 export type VariableValue =

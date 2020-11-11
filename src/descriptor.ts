@@ -25,7 +25,7 @@ export class ComponentDescriptor extends Descriptor<ComponentDescriptor> {
 
     private readonly procedures: Array<ProcedureDescriptor> = new Array<ProcedureDescriptor>();
     private readonly implementations: Array<ImplementationDescriptor> = new Array<ImplementationDescriptor>();
-    private readonly fields: Array<VariableDescriptorBase<never>> = new Array<VariableDescriptorBase<never>>();
+    private readonly fields: Array<VariableDescriptorBase> = new Array<VariableDescriptorBase>();
 
     private readonly offers: Array<InterfaceDescriptor> = new Array<InterfaceDescriptor>();
     private readonly requires: Array<InterfaceDescriptor> = new Array<InterfaceDescriptor>();
@@ -82,11 +82,11 @@ export class ComponentDescriptor extends Descriptor<ComponentDescriptor> {
         return Descriptor.load(this.implementations, index);
     }
 
-    pushField(descriptor: VariableDescriptorBase<never>): number {
+    pushField(descriptor: VariableDescriptorBase): number {
         return Descriptor.push(this.fields, descriptor);
     }
 
-    loadField(index: number): VariableDescriptorBase<unknown> {
+    loadField(index: number): VariableDescriptorBase {
         return Descriptor.load(this.fields, index);
     }
 
@@ -241,14 +241,9 @@ export class VariableIndexDescriptor extends Descriptor<VariableIndexDescriptor>
     }
 }
 
-enum VariableDescriptorBaseTag {
-    Tag,
-}
-export abstract class VariableDescriptorBase<T> extends Descriptor<T> {
-    protected readonly _variableDescriptorBaseTag: VariableDescriptorBaseTag = VariableDescriptorBaseTag.Tag;
-}
+export type VariableDescriptorBase = VariableDescriptor | CollectionVariableDescriptor;
 
-export class VariableDescriptor extends VariableDescriptorBase<VariableDescriptor> {
+export class VariableDescriptor extends Descriptor<VariableDescriptor> {
     private value: VariableValue = undefined;
 
     getValue(): VariableValue {
@@ -266,7 +261,7 @@ export class VariableDescriptor extends VariableDescriptorBase<VariableDescripto
     }
 }
 
-export class CollectionVariableDescriptor extends VariableDescriptorBase<CollectionVariableDescriptor> {
+export class CollectionVariableDescriptor extends Descriptor<CollectionVariableDescriptor> {
     private values: Map<VariableIndexDescriptor, VariableValue> = new Map<VariableIndexDescriptor, VariableValue>();
 
     getValue(index: VariableIndexDescriptor): VariableValue {
