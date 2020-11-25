@@ -9,7 +9,7 @@ enum IntegerDescriptorTag {
     Tag,
 }
 export class IntegerDescriptor {
-    constructor(initialValue: number) {
+    constructor(initialValue = 0) {
         this.initialValue = Math.trunc(initialValue);
     }
     public readonly initialValue: number;
@@ -21,7 +21,7 @@ enum FloatDescriptorTag {
     Tag,
 }
 export class FloatDescriptor {
-    constructor(initialValue: number) {
+    constructor(initialValue = 0) {
         this.initialValue = initialValue;
     }
     public readonly initialValue: number;
@@ -33,7 +33,7 @@ enum TextDescriptorTag {
     Tag,
 }
 export class TextDescriptor {
-    constructor(initialValue: string) {
+    constructor(initialValue = '') {
         this.initialValue = initialValue;
     }
     public readonly initialValue: string;
@@ -45,7 +45,7 @@ enum CharacterDescriptorTag {
     Tag,
 }
 export class CharacterDescriptor {
-    constructor(initialValue: string) {
+    constructor(initialValue = '') {
         if (initialValue.length > 1) {
             throw new Error('CharacterDescriptor initialValue lenght > 1');
         }
@@ -60,7 +60,7 @@ enum BooleanDescriptorTag {
     Tag,
 }
 export class BooleanDescriptor {
-    constructor(initialValue: boolean) {
+    constructor(initialValue = false) {
         this.initialValue = initialValue;
     }
     public readonly initialValue: boolean;
