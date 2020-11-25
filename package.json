@@ -1,6 +1,6 @@
 {
   "name": "@composita/il",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Composita language IL.",
   "main": "dist/cjs/il.js",
   "module": "dist/esm/il.js",
