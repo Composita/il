@@ -86,9 +86,9 @@ export class JumpDescriptor {
 }
 
 export class SystemCallDescriptor {
-    constructor(systemCall: SystemCallOperator) {
+    constructor(systemCall: SystemCallOperator, ...args: Array<TypeDescriptor>) {
         this.systemCall = systemCall;
-        this.arguments = new Array<TypeDescriptor>();
+        this.arguments = new Array<TypeDescriptor>(...args);
     }
     public readonly systemCall: SystemCallOperator;
     public readonly arguments: Array<TypeDescriptor>;
