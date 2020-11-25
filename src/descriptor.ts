@@ -7,8 +7,8 @@ import { SystemCallOperator } from './syscall';
 export type TypeDescriptor = ComponentDescriptor | BuiltInTypeDescriptor;
 
 export class DeclarationDescriptor {
-    public readonly constants = new Array<TypeDescriptor>();
-    public readonly variables = new Array<TypeDescriptor>();
+    public readonly constants = new Array<VariableDescriptor>();
+    public readonly variables = new Array<VariableDescriptor>();
     public readonly procedures = new Array<ProcedureDescriptor>();
     public readonly components = new Array<ComponentDescriptor>();
 }
