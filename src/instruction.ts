@@ -4,6 +4,7 @@ import {
     ProcedureDescriptor,
     SystemCallDescriptor,
     TypeDescriptor,
+    VariableDescriptor,
 } from './descriptor';
 import { OperatorCode } from './opcode';
 
@@ -20,5 +21,6 @@ export type InstructionArgument =
     | SystemCallDescriptor
     | MessageDescriptor
     | TypeDescriptor
+    | VariableDescriptor
     | ProcedureDescriptor
     | JumpDescriptor;
