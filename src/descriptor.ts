@@ -25,12 +25,12 @@ export class ComponentDescriptor {
 
 export class ProcedureDescriptor {
     constructor(returnType: Optional<TypeDescriptor>) {
-        this.parameters = new Array<InterfaceDescriptor>();
+        this.parameters = new Array<VariableDescriptor>();
         this.returnType = returnType;
         this.declarations = new DeclarationDescriptor();
         this.begin = new CodeBlockDescriptor();
     }
-    public readonly parameters: Array<InterfaceDescriptor>;
+    public readonly parameters: Array<VariableDescriptor>;
     public readonly returnType: Optional<TypeDescriptor>;
     public readonly declarations: DeclarationDescriptor;
     public readonly begin: CodeBlockDescriptor;
