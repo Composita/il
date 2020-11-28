@@ -7,6 +7,7 @@ import { SystemCallOperator } from './syscall';
 export type TypeDescriptor = ComponentDescriptor | BuiltInTypeDescriptor;
 
 export class DeclarationDescriptor {
+    public readonly init = new CodeBlockDescriptor();
     public readonly constants = new Array<VariableDescriptor>();
     public readonly variables = new Array<VariableDescriptor>();
     public readonly procedures = new Array<ProcedureDescriptor>();
@@ -24,32 +25,21 @@ export class ComponentDescriptor {
 }
 
 export class ProcedureDescriptor {
-    constructor(returnType: Optional<TypeDescriptor>) {
-        this.parameters = new Array<VariableDescriptor>();
-        this.returnType = returnType;
-        this.declarations = new DeclarationDescriptor();
-        this.begin = new CodeBlockDescriptor();
-    }
-    public readonly parameters: Array<VariableDescriptor>;
-    public readonly returnType: Optional<TypeDescriptor>;
-    public readonly declarations: DeclarationDescriptor;
-    public readonly begin: CodeBlockDescriptor;
+    constructor(public readonly returnType: Optional<TypeDescriptor>) {}
+    public readonly parameters = new Array<VariableDescriptor>();
+    public readonly declarations = new DeclarationDescriptor();
+    public readonly begin = new CodeBlockDescriptor();
 }
 
 export class ImplementationDescriptor {
+    constructor(public readonly reference: InterfaceDescriptor) {}
     public readonly declarations = new DeclarationDescriptor();
     public readonly begin = new CodeBlockDescriptor();
 }
 
 export class VariableDescriptor {
-    constructor(type: TypeDescriptor, mutable: boolean) {
-        this.type = type;
-        this.mutable = mutable;
-        this.indexTypes = new Array<TypeDescriptor>();
-    }
-    public readonly type: TypeDescriptor;
-    public readonly mutable: boolean;
-    public readonly indexTypes: Array<TypeDescriptor>;
+    constructor(public readonly type: TypeDescriptor, public readonly mutable: boolean) {}
+    public readonly indexTypes = new Array<TypeDescriptor>();
 }
 
 export class CodeBlockDescriptor {
@@ -61,35 +51,22 @@ export class InterfaceDescriptor {
 }
 
 export class ProtocolDescriptor {
-    constructor(protocolType: ProtocolType) {
-        this.type = protocolType;
-        this.messages = new Array<MessageDescriptor>();
-    }
-    public readonly type: ProtocolType;
-    public readonly messages: Array<MessageDescriptor>;
+    constructor(public readonly type: ProtocolType) {}
+    public readonly messages = new Array<MessageDescriptor>();
 }
 
 export class MessageDescriptor {
-    constructor(direction: MessageDirection) {
-        this.direction = direction;
-        this.data = new Array<TypeDescriptor>();
-    }
-    public readonly direction: MessageDirection;
-    public readonly data: Array<TypeDescriptor>;
+    constructor(public readonly direction: MessageDirection) {}
+    public readonly data = new Array<TypeDescriptor>();
 }
 
 export class JumpDescriptor {
-    constructor(offset: number) {
-        this.offset = offset;
-    }
-    public readonly offset: number;
+    constructor(public readonly offset: number) {}
 }
 
 export class SystemCallDescriptor {
-    constructor(systemCall: SystemCallOperator, ...args: Array<TypeDescriptor>) {
-        this.systemCall = systemCall;
+    constructor(public readonly systemCall: SystemCallOperator, ...args: Array<TypeDescriptor>) {
         this.arguments = new Array<TypeDescriptor>(...args);
     }
-    public readonly systemCall: SystemCallOperator;
     public readonly arguments: Array<TypeDescriptor>;
 }
