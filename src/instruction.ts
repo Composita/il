@@ -1,4 +1,5 @@
 import {
+    InterfaceDescriptor,
     JumpDescriptor,
     MessageDescriptor,
     ProcedureDescriptor,
@@ -23,4 +24,5 @@ export type InstructionArgument =
     | TypeDescriptor
     | VariableDescriptor
     | ProcedureDescriptor
+    | InterfaceDescriptor
     | JumpDescriptor;

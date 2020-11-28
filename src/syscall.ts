@@ -23,4 +23,5 @@ export enum SystemCallOperator {
     ToInteger,
     ToReal,
     ToText,
+    LoadForEachDesignators,
 }

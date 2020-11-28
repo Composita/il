@@ -53,6 +53,7 @@ export enum OperatorCode {
     // variables
     StoreVariable,
     LoadVariable,
+    LoadService,
 
     // concurrency
     Await,
