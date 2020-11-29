@@ -4,7 +4,7 @@ import { MessageDirection, ProtocolType } from './enums';
 import { Instruction } from './instruction';
 import { SystemCallOperator } from './syscall';
 
-export type TypeDescriptor = ComponentDescriptor | BuiltInTypeDescriptor;
+export type TypeDescriptor = ComponentDescriptor | BuiltInTypeDescriptor | InterfaceDescriptor;
 
 export type DeclarationContainer = ComponentDescriptor | ProcedureDescriptor | ImplementationDescriptor;
 
