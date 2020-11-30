@@ -1,6 +1,6 @@
 import { Optional } from '@composita/ts-utility-types';
 import { BuiltInTypeDescriptor } from './builtin';
-import { MessageDirection, ProtocolType } from './enums';
+import { ProtocolType } from './enums';
 import { Instruction } from './instruction';
 import { SystemCallOperator } from './syscall';
 
@@ -57,7 +57,6 @@ export class ProtocolDescriptor {
 }
 
 export class MessageDescriptor {
-    constructor(public readonly direction: MessageDirection) {}
     public readonly data = new Array<TypeDescriptor>();
 }
 
