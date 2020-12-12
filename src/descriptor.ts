@@ -16,6 +16,7 @@ export class DeclarationDescriptor {
 }
 
 export class ComponentDescriptor {
+    constructor(public readonly identifier: string) {}
     public readonly offers = new Array<InterfaceDescriptor>();
     public readonly requires = new Array<InterfaceDescriptor>();
     public readonly declarations = new DeclarationDescriptor();
@@ -26,7 +27,7 @@ export class ComponentDescriptor {
 }
 
 export class ProcedureDescriptor {
-    constructor(public readonly returnType: Optional<TypeDescriptor>) {}
+    constructor(public readonly identifier: string, public readonly returnType: Optional<TypeDescriptor>) {}
     public readonly parameters = new Array<VariableDescriptor>();
     public readonly declarations = new DeclarationDescriptor();
     public readonly begin = new CodeBlockDescriptor();
@@ -39,7 +40,11 @@ export class ImplementationDescriptor {
 }
 
 export class VariableDescriptor {
-    constructor(public readonly type: TypeDescriptor, public readonly mutable: boolean) {}
+    constructor(
+        public readonly identifier: string,
+        public readonly type: TypeDescriptor,
+        public readonly mutable: boolean,
+    ) {}
     public readonly indexTypes = new Array<TypeDescriptor>();
 }
 
@@ -48,6 +53,7 @@ export class CodeBlockDescriptor {
 }
 
 export class InterfaceDescriptor {
+    constructor(public readonly identifier: string) {}
     public readonly protocols = new Array<ProtocolDescriptor>();
 }
 
@@ -57,6 +63,7 @@ export class ProtocolDescriptor {
 }
 
 export class MessageDescriptor {
+    constructor(public readonly identifier: string) {}
     public readonly data = new Array<TypeDescriptor>();
 }
 
