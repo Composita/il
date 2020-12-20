@@ -2,7 +2,7 @@ import { Optional } from '@composita/ts-utility-types';
 import { BuiltInTypeDescriptor } from './builtin';
 import { ProtocolType } from './enums';
 import { Instruction } from './instruction';
-import { SystemCallOperator } from './syscall';
+import { SystemCallOperation } from './syscall';
 
 export type TypeDescriptor = ComponentDescriptor | BuiltInTypeDescriptor | InterfaceDescriptor;
 
@@ -72,7 +72,7 @@ export class JumpDescriptor {
 }
 
 export class SystemCallDescriptor {
-    constructor(public readonly systemCall: SystemCallOperator, ...args: Array<TypeDescriptor>) {
+    constructor(public readonly systemCall: SystemCallOperation, ...args: Array<TypeDescriptor>) {
         this.arguments = new Array<TypeDescriptor>(...args);
     }
     public readonly arguments: Array<TypeDescriptor>;

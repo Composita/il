@@ -7,14 +7,14 @@ import {
     TypeDescriptor,
     VariableDescriptor,
 } from './descriptor';
-import { OperatorCode } from './opcode';
+import { OperationCode } from './opcode';
 
 export class Instruction {
-    constructor(code: OperatorCode, ...args: Array<InstructionArgument>) {
+    constructor(code: OperationCode, ...args: Array<InstructionArgument>) {
         this.code = code;
         this.arguments = new Array<InstructionArgument>(...args);
     }
-    public readonly code: OperatorCode;
+    public readonly code: OperationCode;
     public readonly arguments: Array<InstructionArgument>;
 }
 
