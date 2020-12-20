@@ -1,0 +1,67 @@
+OperationCode ::=
+  % Basic Math Ops                                    % stack: top : ValueTypes , ..., bottom : ValueTypes
+  Add                                   =  0          % op, right-value : Addable, left-value : Addable
+  Subtract                              =  1          % op, right-value : Number, left-value : Number
+  Multiply                              =  2          % op, right-value : Number, left-value : Number
+  Divide                                =  3          % op, right-value : Number, left-value : Number
+  Negate                                =  4          % op, value : Number
+  Modulo                                =  5          % op, right-value : Number, left-value : Number
+
+  % Compare Ops  
+  Equal                                 =  6          % op, right-value : Equatable, left-value : Equatable
+  Less                                  =  7          % op, right-value : Comparable, left-value : Comparable
+  LessEqual                             =  8          % op, right-value : Comparable, left-value : Comparable
+  Greater                               =  9          % op, right-value : Comparable, left-value : Comparable
+  GreaterEqual                          = 10          % op, right-value : Comparable, left-value : Comparable
+  NotEqual                              = 11          % op, right-value : Equatable, left-value : Equatable
+
+  % Unary invert  
+  Not                                   = 12          % op, value : Boolean
+
+  % Logic binary ops  
+  LogicOr                               = 13          % op, right-value : Boolean, left-value : Boolean
+  LogicAnd                              = 14          % op, right-value : Boolean, left-value : Boolean
+
+  % new component  
+  New                                   = 15          % op { TypeDescriptor }, target: Variable, [ MatrixDimensions: Integer ]
+  Delete                                = 16          % op, value : Component
+
+  Send                                  = 17          % op { MessageDescriptor }, target: Service, [ MessageArgument : Any ]
+  Receive                               = 18          % op { MessageDescriptor }, receiver: Service, [ TargetVariables: Any ]
+  Connect                               = 19          % op, right-offered-service: Service, left-required-service: Service | Component                % 7.3.1
+                                                      % op, right-offered-sub-service: Service, left-offered-redirect-service: Service | Component    % 7.3.2
+                                                      % op, right-required-redirect-service: Service, left-required-sub-service: Service              % 7.3.3
+  Disconnect,                           = 20          % op, target: Service
+  ReceiveTest                           = 21          % op { MessageDescriptor }, receiver: Service, [ TargetVariables: Any ]
+  InputTest                             = 22          % op { MessageDescriptor }, receiver: Service, [ TargetVariables: Any ]
+  SystemCall                            = 23          % op { SystemCallDescriptor }, [ Parameters: Parameter ]
+  ProcedureCall                         = 24          % op { ProcedureDescriptor }, [ Parameters : Parameter ]
+  Return                                = 25          % op
+
+  % Load constants  
+  LoadConstantBoolean                   = 26          % op { BooleanDescriptor }
+  LoadConstantText                      = 27          % op { TextDescriptor }
+  LoadConstantCharacter                 = 28          % op { CharacterDescriptor }
+  LoadConstantFloat                     = 29          % op { FloatDescriptor }
+  LoadConstantInteger                   = 30          % op { IntegerDescriptor }
+
+  Move                                  = 31          % op, right-target: Component, left-source: Component
+
+  StoreVariable                         = 32          % op, right-value: Value, left-target: Variable
+  LoadVariable                          = 33          % op { VariableDescriptor }, [ Index: BuiltIn ]
+  LoadService                           = 34          % op { InterfaceDescriptor }, target: Component | Service
+  LoadThis                              = 35          % op 
+
+  % Concurrency  
+  AcquireShared                         = 36          % op
+  ReleaseShared                         = 37          % op
+  AcquireExclusive                      = 38          % op
+  ReleaseExclusive                      = 39          % op
+
+  Branch                                = 40          % op { JumpDescriptor }
+  BranchTrue                            = 41          % op { JumpDescriptor }, value : Boolean
+  BranchFalse                           = 42          % op { JumpDescriptor }, value : Boolean
+
+  IsType                                = 43          % op, right-type: ComponentDescriptor, left-value: Variable       % verify that this is only for variables
+  ExistsTest                            = 44          % op, value: Variable                                             % same here
+  

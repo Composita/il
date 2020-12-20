@@ -1,0 +1,28 @@
+SystemCallOperation ::=
+  % Basic Math Ops                                    % stack: top : ValueTypes , ..., bottom : ValueTypes
+  Write                                 =  0          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  WriteLine                             =  1          % op { numberOfArguments: IntegerDescriptor }
+  WriteHex                              =  2          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  Assert                                =  3          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  Halt                                  =  4          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  Inc                                   =  5          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  Dec                                   =  6          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  Passivate                             =  7          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  Count                                 =  8          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  Length                                =  9          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  Sqrt                                  = 10          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  Sin                                   = 11          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  Cos                                   = 12          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  Tan                                   = 13          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  ArcSin                                = 14          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  ArcCos                                = 15          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  ArcTan                                = 16          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  Random                                = 17          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  Min                                   = 18          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  Max                                   = 19          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  ToCharacter                           = 20          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  ToInteger                             = 21          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  ToReal                                = 22          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  ToText                                = 23          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
+  LoadForEachDesignators                = 24          % op { numberOfArguments: IntegerDescriptor }, designator : TypeDescriptor, [ designators : VariableDescriptor ]
+                                                      % finished: BooleanDescriptor
