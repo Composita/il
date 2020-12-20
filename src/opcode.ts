@@ -53,7 +53,6 @@ export enum OperationCode {
     LoadThis,
 
     // concurrency
-    Await,
     AcquireShared,
     ReleaseShared,
     AcquireExclusive,
