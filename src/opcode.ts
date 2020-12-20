@@ -1,4 +1,4 @@
-export enum OperatorCode {
+export enum OperationCode {
     // math binary
     Add,
     Subtract,
@@ -54,7 +54,6 @@ export enum OperatorCode {
 
     // concurrency
     Await,
-    Passivate,
     AcquireShared,
     ReleaseShared,
     AcquireExclusive,

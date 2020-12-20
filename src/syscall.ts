@@ -1,4 +1,4 @@
-export enum SystemCallOperator {
+export enum SystemCallOperation {
     Write,
     WriteLine,
     WriteHex,
