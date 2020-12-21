@@ -62,6 +62,6 @@ OperationCode ::=
   BranchTrue                            = 41          % op { JumpDescriptor }, value : Boolean
   BranchFalse                           = 42          % op { JumpDescriptor }, value : Boolean
 
-  IsType                                = 43          % op, right-type: ComponentDescriptor, left-value: Variable       % verify that this is only for variables
+  IsType                                = 43          % op { ComponentDescriptor }, value: Variable                     % verify that this is only for variables
   ExistsTest                            = 44          % op, value: Variable                                             % same here
   
