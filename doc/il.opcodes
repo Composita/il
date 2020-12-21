@@ -23,7 +23,7 @@ OperationCode ::=
   LogicAnd                              = 14          % op, right-value : Boolean, left-value : Boolean
 
   % new component  
-  New                                   = 15          % op { TypeDescriptor }, target: Variable, [ nArgs: Any ]
+  New                                   = 15          % op { TypeDescriptor, IntegerDescriptor }, target: Variable, [ nArgs: Any ]
   Delete                                = 16          % op, value : Component
 
   Send                                  = 17          % op { MessageDescriptor }, target: Service, [ MessageArgument : Any ]
