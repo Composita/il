@@ -50,7 +50,7 @@ OperationCode ::=
   StoreVariable                         = 32          % op, right-value: Value, left-target: Variable
   LoadVariable                          = 33          % op { VariableDescriptor }, [ Index: BuiltIn ]
   LoadArrayVariable                     = 34          % op { VariableDescriptor }
-  LoadArrayVariableElement              = 35          % op
+  LoadArrayVariableElement              = 35          % op { VariableDescriptor }
   LoadService                           = 36          % op { InterfaceDescriptor }, target: Component | Service
   LoadThis                              = 37          % op 
 
