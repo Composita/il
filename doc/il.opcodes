@@ -64,4 +64,7 @@ OperationCode ::=
 
   IsType                                = 43          % op { ComponentDescriptor }, value: Variable                     % verify that this is only for variables
   ExistsTest                            = 44          % op, value: Variable                                             % same here
-  
+
+  BeginForEach                          = 44          % op
+  EndForEach                            = 44          % op
+  AssignArrayIndex                      = 44          % op, value: ArrayVariable, [ IndexTargets: Variable ]

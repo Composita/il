@@ -64,4 +64,9 @@ export enum OperationCode {
 
     IsType,
     ExistsTest,
+
+    // foreach
+    BeginForEach,
+    EndForEach,
+    AssignArrayIndex,
 }

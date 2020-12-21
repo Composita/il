@@ -24,5 +24,3 @@ SystemCallOperation ::=
   ToInteger                             = 21          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
   ToReal                                = 22          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
   ToText                                = 23          % op { numberOfArguments: IntegerDescriptor }, [ Args ]
-  LoadForEachDesignators                = 24          % op { numberOfArguments: IntegerDescriptor }, designator : TypeDescriptor, [ designators : VariableDescriptor ]
-                                                      % finished: BooleanDescriptor
