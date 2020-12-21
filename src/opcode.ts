@@ -49,6 +49,8 @@ export enum OperationCode {
     // variables
     StoreVariable,
     LoadVariable,
+    LoadArrayVariable,
+    LoadArrayVariableElement,
     LoadService,
     LoadThis,
 

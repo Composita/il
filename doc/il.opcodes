@@ -23,7 +23,7 @@ OperationCode ::=
   LogicAnd                              = 14          % op, right-value : Boolean, left-value : Boolean
 
   % new component  
-  New                                   = 15          % op { TypeDescriptor }, target: Variable, [ MatrixDimensions: Integer ]
+  New                                   = 15          % op { TypeDescriptor }, target: Variable, [ nArgs: Any ]
   Delete                                = 16          % op, value : Component
 
   Send                                  = 17          % op { MessageDescriptor }, target: Service, [ MessageArgument : Any ]
@@ -49,22 +49,24 @@ OperationCode ::=
 
   StoreVariable                         = 32          % op, right-value: Value, left-target: Variable
   LoadVariable                          = 33          % op { VariableDescriptor }, [ Index: BuiltIn ]
-  LoadService                           = 34          % op { InterfaceDescriptor }, target: Component | Service
-  LoadThis                              = 35          % op 
+  LoadArrayVariable                     = 34          % op { VariableDescriptor }
+  LoadArrayVariableElement              = 35          % op
+  LoadService                           = 36          % op { InterfaceDescriptor }, target: Component | Service
+  LoadThis                              = 37          % op 
 
   % Concurrency  
-  AcquireShared                         = 36          % op
-  ReleaseShared                         = 37          % op
-  AcquireExclusive                      = 38          % op
-  ReleaseExclusive                      = 39          % op
+  AcquireShared                         = 38          % op
+  ReleaseShared                         = 39          % op
+  AcquireExclusive                      = 40          % op
+  ReleaseExclusive                      = 41          % op
 
-  Branch                                = 40          % op { JumpDescriptor }
-  BranchTrue                            = 41          % op { JumpDescriptor }, value : Boolean
-  BranchFalse                           = 42          % op { JumpDescriptor }, value : Boolean
+  Branch                                = 42          % op { JumpDescriptor }
+  BranchTrue                            = 43          % op { JumpDescriptor }, value : Boolean
+  BranchFalse                           = 44          % op { JumpDescriptor }, value : Boolean
 
-  IsType                                = 43          % op { ComponentDescriptor }, value: Variable                     % verify that this is only for variables
-  ExistsTest                            = 44          % op, value: Variable                                             % same here
+  IsType                                = 45          % op { ComponentDescriptor }, value: Variable                     % verify that this is only for variables
+  ExistsTest                            = 46          % op, value: Variable                                             % same here
 
-  BeginForEach                          = 44          % op
-  EndForEach                            = 44          % op
-  AssignArrayIndex                      = 44          % op, value: ArrayVariable, [ IndexTargets: Variable ]
+  BeginForEach                          = 47          % op
+  EndForEach                            = 48          % op
+  AssignArrayIndex                      = 49          % op, value: ArrayVariable, [ IndexTargets: Variable ]
